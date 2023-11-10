@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientApp", "PatientApp\PatientApp.csproj", "{5FC0DDE8-0B41-4248-904D-00675B2D816B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientApp.Data", "PatientApp.Data\PatientApp.Data.csproj", "{62E448AC-8EFB-4D24-BD7B-1F7AAF565A82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientApp.API.Test", "PatientApp.API.Test\PatientApp.API.Test.csproj", "{73BB76A4-E460-4DBA-BD0B-78F1144CA61A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FC0DDE8-0B41-4248-904D-00675B2D816B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC0DDE8-0B41-4248-904D-00675B2D816B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC0DDE8-0B41-4248-904D-00675B2D816B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC0DDE8-0B41-4248-904D-00675B2D816B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62E448AC-8EFB-4D24-BD7B-1F7AAF565A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62E448AC-8EFB-4D24-BD7B-1F7AAF565A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62E448AC-8EFB-4D24-BD7B-1F7AAF565A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62E448AC-8EFB-4D24-BD7B-1F7AAF565A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73BB76A4-E460-4DBA-BD0B-78F1144CA61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BB76A4-E460-4DBA-BD0B-78F1144CA61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BB76A4-E460-4DBA-BD0B-78F1144CA61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BB76A4-E460-4DBA-BD0B-78F1144CA61A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
