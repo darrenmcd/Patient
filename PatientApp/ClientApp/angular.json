@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sandbox": {
+    "patient-app": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "MyAngular:build:production"
+              "browserTarget": "patient-app:build:production"
             },
             "development": {
-              "browserTarget": "MyAngular:build:development",
+              "browserTarget": "patient-app:build:development",
               "proxyConfig": "proxy.conf.js"
             }
           },

@@ -8,7 +8,6 @@
     "start:windows": "ng serve --port 44483 --ssl --ssl-cert \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.pem\" --ssl-key \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.key\"",
     "start:default": "ng serve --port 44483 --ssl --ssl-cert \"$HOME/.aspnet/https/${npm_package_name}.pem\" --ssl-key \"$HOME/.aspnet/https/${npm_package_name}.key\"",
     "build": "ng build",
-    "build:ssr": "ng run MyAngular:server:dev",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -26,7 +25,8 @@
     "@angular/router": "^16.0.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.0"
+    "zone.js": "~0.13.0",
+    "run-script-os": "^1.1.6"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.0.0",
