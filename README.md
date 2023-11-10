@@ -11,6 +11,7 @@ Front End
 - Typescript 5.0.2
 - Html - Responsive Design
 -------- Started going back and forth between bootstrap and material. 
+-------- https://wrapbootstrap.com/theme/color-admin-6-admin-template-5-frontend-WB0N89JMK
 - TODO: NG-Grid for data
 
 API
@@ -45,3 +46,4 @@ Devops
 State of the application. I spent as much time as I could on it this week. No excuses, it currently is non functional. I hit a CORS issue on having both the Angular App and the API within the same project. I am going to continue to tinker with this as time allows, as it has been a great practice into whats new with Angular.
 
 Please feel free to give me a call or test anytime if you would like to discuss.
+
