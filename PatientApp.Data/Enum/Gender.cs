@@ -3,5 +3,6 @@
 public enum Gender
 {
     Male = 'M',
-    Female = 'F' 
+    Female = 'F',
+    Unknown = 'U'
 }

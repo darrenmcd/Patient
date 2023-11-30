@@ -1,5 +1,7 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using PatientApp.Data.Enum;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,8 +53,67 @@ app.MapGet("/heartbeat/ping", () => "API is Online.");
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //--  API that will upload our file 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+app.MapPost("/file/upload",
+    async Task<IResult> (HttpRequest request,PatientApp.Data.PatientContext patientContext) =>
+    {
+        if (!request.HasFormContentType)
+            return Results.BadRequest();
 
+        var form = await request.ReadFormAsync();
 
+        if (form.Files.Any() == false)
+            return Results.BadRequest("There are no files");
+
+        var file = form.Files.FirstOrDefault();
+
+        if (file is null || file.Length == 0)
+            return Results.BadRequest("File cannot be empty");
+
+        //create a list for each line
+        List<string> patientLines = new List<string>();
+        using var stream = file.OpenReadStream();
+            using (var reader = new StreamReader(stream))
+            {
+                while (!reader.EndOfStream)
+                {
+                    string? line = reader.ReadLine();
+                    if (!string.IsNullOrEmpty(line))
+                        patientLines.Add(line);
+                }
+            }
+    
+        //loop through each line and insert data into our patient table
+        foreach (string line in patientLines)
+        {
+            if (line.StartsWith("First Name"))
+                continue;
+
+            string[] patientData = line.Split(",");
+            PatientApp.Data.Model.Patient patient = new PatientApp.Data.Model.Patient();
+            patient.FirstName = patientData[0];
+            patient.LastName = patientData[1];
+            patient.Gender = Gender.Unknown;
+            if (Enum.TryParse(patientData[2],out PatientApp.Data.Enum.Gender genderOut))
+                patient.Gender = genderOut;
+            if (DateTime.TryParse(patientData[3],out DateTime birthDate))
+                patient.BirthDate = birthDate;
+            
+            //check to see if client is already in the database
+            //We Use Count() here it is faster then Any().
+            if (patientContext.Patient.Count(x => x.FirstName == patient.FirstName
+                                                  && x.LastName == patient.LastName
+                                                  && x.Gender == patient.Gender
+                                                  && x.BirthDate == patient.BirthDate) == 0)
+            {
+                patientContext.Patient.Add(patient);
+            }
+        }
+        await patientContext.SaveChangesAsync();
+        
+        return Results.Ok();
+    }).Accepts<IFormFile>("multipart/form-data"); 
+
+//
 // app.MapPost("/file/upload", async (HttpRequest request) =>
 // {
 //     using (var reader = new StreamReader(request.Body, System.Text.Encoding.UTF8))
