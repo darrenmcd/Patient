@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
 import { throwError } from "rxjs";
 
 @Component({
@@ -7,11 +7,15 @@ import { throwError } from "rxjs";
   templateUrl: "./single-file-upload.component.html",
   styleUrls: ["./single-file-upload.component.css"],
 })
-export class SingleFileUploadComponent {
+export class SingleFileUploadComponent  implements OnInit {
   status: "initial" | "uploading" | "success" | "fail" = "initial"; // Variable to store file status
   file: File | null = null; // Variable to store file
 
-  constructor(private http: HttpClient) {}
+  private url!: string;
+
+  constructor(private http: HttpClient,  @Inject('BASE_URL') baseUrl: string) {
+    this.url = baseUrl + 'file';
+  }
 
   ngOnInit(): void {}
 
@@ -31,7 +35,7 @@ export class SingleFileUploadComponent {
 
       formData.append("file", this.file, this.file.name);
 
-      const upload$ = this.http.post("localhost:50851/api/upload", formData);
+      const upload$ = this.http.post(this.url + "/upload", formData);
 
       this.status = "uploading";
 
